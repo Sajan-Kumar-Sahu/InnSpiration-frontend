@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router";
 import AdminHeader from '@/components/layouts/admin-header.layout';
 import AdminFooter from '@/components/layouts/admin-footer.layout';
 
-import ProtectedRoute from '@/components/protectedRoute';
+import ProtectedRoute from '@/components/ProtectedRoute';
 import AdminSignUp from './auth/admin-sign-up';
 import AdminSignIn from './auth/admin-sign-in';
 import AdminDashboard from '@/admin/admin-dashboard/AdminDashboard';
