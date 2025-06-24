@@ -18,7 +18,7 @@ const Aboutus = () => {
       <section className="py-16">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
           <img
-            src="public\assets\business-people-teamwork.jpg"
+            src="/assets/business-people-teamwork.jpg"
             alt="Our Mission"
             className="w-full h-auto rounded-xl shadow-md"
           />
@@ -53,7 +53,7 @@ const Aboutus = () => {
             {/* Image */}
             <div className="md:w-1/2">
             <img
-                src="public\assets\Why choose us.jpg"
+                src="/assets/Why choose us.jpg"
                 alt="Why Choose Us"
                 className="rounded-lg shadow-lg w-full"
             />
@@ -135,7 +135,7 @@ const Aboutus = () => {
                 {/* Team Member 1 */}
                 <div className="bg-white p-6 rounded-lg shadow-md">
                     <img
-                    src="public\assets\Sankarshan Photo.jpg"
+                    src="/assets/Sankarshan Photo.jpg"
                     alt="Sankarshan Pradhan"
                     className="w-40 h-50 mx-auto rounded-b-lg object-cover object-center mb-4"                    />
                     <h5 className="text-xl font-bold">Sankarshan Pradhan</h5>
@@ -145,7 +145,7 @@ const Aboutus = () => {
                 {/* Team Member 2 */}
                 <div className="bg-white p-6 rounded-lg shadow-md">
                     <img
-                    src="public\assets\sajan image.jpg"
+                    src="/assets/sajan image.jpg"
                     alt="Sajan Kumar Sahu"
                     className="w-40 h-50 mx-auto rounded-lg object-cover mb-4"
                     />
@@ -156,7 +156,7 @@ const Aboutus = () => {
                 {/* Team Member 3 */}
                 <div className="bg-white p-6 rounded-lg shadow-md">
                     <img
-                    src="public\assets\jalaj.png"
+                    src="/assets/jalaj.png"
                     alt="Jyotiraditya Mishra"
                     className="w-40 h-50 mx-auto rounded-lg object-cover mb-4"
                     />
