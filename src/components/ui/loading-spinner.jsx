@@ -6,7 +6,7 @@ const LoadingSpinner = () => {
       <img
         src="/assets/transparent logo.png"
         alt="Loading..."
-        className="w-24 h-24 animate-pulse-logo"
+        className="w-24 h-24 animate-pulse-slow"
       />
     </div>
   );
