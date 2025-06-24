@@ -3,6 +3,7 @@ import axiosInstance from '@/lib/axios-instance';
 import { Button } from '@/components/ui/button';
 import AddHotelDialog from './components/AddHotelDialog';
 import EditHotelDialog from './components/EditHotelDialog';
+import LoadingSpinner from '@/components/ui/loading-spinner'; // 👈 Spinner import added
 
 const HotelList = () => {
   const [hotels, setHotels] = useState([]);
@@ -57,7 +58,11 @@ const HotelList = () => {
   };
 
   if (loading) {
-    return <div className="p-6 text-lg">Loading hotels...</div>;
+    return (
+      <div className="flex justify-center items-center py-12">
+        <LoadingSpinner />
+      </div>
+    );
   }
 
   return (

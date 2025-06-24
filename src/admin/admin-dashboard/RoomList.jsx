@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axiosInstance from '@/lib/axios-instance';
 import AddRoomDialog from './components/AddRoomDialog';
+import LoadingSpinner from '@/components/ui/loading-spinner'; // 👈 Spinner import added
 
 const RoomList = () => {
   const [hotels, setHotels] = useState([]);
@@ -9,7 +10,6 @@ const RoomList = () => {
   const [loading, setLoading] = useState(true);
   const [showAddRoomDialog, setShowAddRoomDialog] = useState(false);
 
-  // Fetch hotels
   useEffect(() => {
     const fetchHotels = async () => {
       try {
@@ -76,7 +76,6 @@ const RoomList = () => {
           </select>
         </div>
 
-        {/* Add Room Button Top Right */}
         <button
           onClick={openAddRoomDialog}
           className="bg-blue-600 text-white px-6 py-2 rounded"
@@ -85,7 +84,6 @@ const RoomList = () => {
         </button>
       </div>
 
-      {/* Add Room Dialog */}
       <AddRoomDialog
         isOpen={showAddRoomDialog}
         onClose={closeAddRoomDialog}
@@ -94,7 +92,9 @@ const RoomList = () => {
       />
 
       {loading ? (
-        <div>Please select a hotel from the dropdown to view its Rooms.</div>
+        <div className="flex justify-center items-center py-10">
+          <LoadingSpinner />
+        </div>
       ) : (
         <div className="overflow-x-auto mt-6">
           <table className="min-w-full bg-white rounded shadow">
@@ -110,7 +110,9 @@ const RoomList = () => {
             <tbody>
               {rooms.length === 0 ? (
                 <tr>
-                  <td colSpan="5" className="p-3 text-center">No rooms available for this hotel.</td>
+                  <td colSpan="5" className="p-3 text-center">
+                    No rooms available for this hotel.
+                  </td>
                 </tr>
               ) : (
                 rooms.map((room) => (

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import api from '@/lib/axios-instance';
+import LoadingSpinner from '@/components/ui/loading-spinner';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -122,7 +123,7 @@ const Profile = () => {
     }
   };
 
-  if (loading) return <div className="text-center py-10 text-lg">Loading profile...</div>;
+  if (loading) return <LoadingSpinner />;
   if (error) return <div className="text-center text-red-500 py-4">{error}</div>;
 
   return (

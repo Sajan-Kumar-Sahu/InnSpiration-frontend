@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import api from '@/lib/axios-instance'; // adjust path if needed
 import API_CONFIG from '@/config/api.config';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
 
 const BookingHistory = () => {
   const [bookings, setBookings] = useState([]);
@@ -43,8 +44,17 @@ const BookingHistory = () => {
     }
   };
 
-  if (loading) return <div className="text-center py-10 text-lg">Loading booking history...</div>;
-  if (error) return <div className="text-center text-red-500 py-10">Error: {error}</div>;
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center py-10">
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div className="text-center text-red-500 py-10">Error: {error}</div>;
+  }
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
@@ -115,7 +125,7 @@ const BookingHistory = () => {
       )}
 
       {showConfirmDialog && (
-        <div className="fixed inset-0  bg-white/20 backdrop-blur-md bg-opacity-40 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-white/20 backdrop-blur-md bg-opacity-40 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full">
             <h3 className="text-lg font-semibold mb-4">Cancel Booking</h3>
             <p className="mb-6">Are you sure you want to cancel this booking?</p>

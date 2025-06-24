@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axiosInstance from '@/lib/axios-instance';
+import LoadingSpinner from '@/components/ui/loading-spinner'; // 👈 added
 
 const BookingList = () => {
   const [hotels, setHotels] = useState([]);
@@ -43,7 +44,6 @@ const BookingList = () => {
     try {
       await axiosInstance.post(`/bookings/${bookingId}/cancel`);
       alert('Booking cancelled successfully!');
-      // Always fetch fresh data after an update
       const updatedBookings = await axiosInstance.get(`/admin/hotels/${selectedHotel}/bookings`);
       setBookings(updatedBookings.data);
     } catch (err) {
@@ -76,7 +76,9 @@ const BookingList = () => {
       </div>
 
       {loading ? (
-        <div>Please select a hotel from the dropdown to view its bookings.</div>
+        <div className="flex justify-center py-8">
+          <LoadingSpinner />
+        </div>
       ) : (
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white rounded shadow text-center">
