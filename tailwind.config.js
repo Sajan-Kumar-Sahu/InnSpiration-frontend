@@ -6,10 +6,16 @@ module.exports = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        'pop-scale': {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.15)' },
+        },
+      },
       animation: {
-        'pulse-slow': 'pulse 2s ease-in-out infinite',
+        'pop': 'pop-scale 1.2s ease-in-out infinite',
       },
     },
   },
   plugins: [],
-}
+};
