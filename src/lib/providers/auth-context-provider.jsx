@@ -4,6 +4,7 @@ import API_CONFIG from '@/config/api.config';
 import { Navigate, Outlet, useLocation } from 'react-router';
 import { getEncodedRedirectUrl } from '../utils';
 import { AUTH_TOKEN_KEY, getStorageItem } from '../storage-manager';
+import LoadingSpinner from '@/components/ui/loading-spinner'; // ✅ import here
 
 const AuthContext = createContext({
   isAuthenticated: false,
@@ -14,17 +15,16 @@ const WithAuthProvider = () => {
   const location = useLocation();
   const { authenticatedUser } = useAuthContext();
 
-  console.log('authenticatedUser in authProvider hook', authenticatedUser)
+  console.log('authenticatedUser in authProvider hook', authenticatedUser);
 
   if (!authenticatedUser.isAuthenticated) {
     const redirectUrl = `${location.pathname}${location.search}`;
-
     return (
       <Navigate to={`/signin?${getEncodedRedirectUrl(redirectUrl)}`} replace />
     );
   }
 
-  return <Outlet />
+  return <Outlet />;
 };
 
 const AuthContextProvider = ({ children }) => {
@@ -38,7 +38,7 @@ const AuthContextProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    if(data) {
+    if (data) {
       setAuthenticatedUser({
         isAuthenticated: true,
         user: data,
@@ -46,10 +46,10 @@ const AuthContextProvider = ({ children }) => {
     }
   }, [data]);
 
-  if (pending) return <p>Loading....</p>;
+  if (pending) return <LoadingSpinner />; // ✅ show spinner instead of text
 
   return (
-    <AuthContext
+    <AuthContext.Provider
       value={{
         authenticatedUser,
         setAuthenticatedUser,
@@ -57,7 +57,7 @@ const AuthContextProvider = ({ children }) => {
       }}
     >
       {children}
-    </AuthContext>
+    </AuthContext.Provider>
   );
 };
 
@@ -66,7 +66,7 @@ const useAuthContext = () => {
 
   if (!context) {
     throw new Error(
-      'userAuthContext must be used within the AuthContextProvider'
+      'useAuthContext must be used within the AuthContextProvider'
     );
   }
 
