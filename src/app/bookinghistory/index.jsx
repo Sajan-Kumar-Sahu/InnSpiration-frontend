@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import api from '@/lib/axios-instance'; // adjust path if needed
 import API_CONFIG from '@/config/api.config';
-import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import LoadingSpinner from '@/components/ui/loading-spinner';
 
 const BookingHistory = () => {
   const [bookings, setBookings] = useState([]);
