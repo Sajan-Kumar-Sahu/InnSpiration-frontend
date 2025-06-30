@@ -1,7 +1,7 @@
 import API_CONFIG from '@/config/api.config';
 import { BOOKING_STATUS } from '@/config/payment.config';
 import axiosInstance from '@/lib/axios-instance';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
 function usePollPaymentStatus() {
@@ -9,46 +9,54 @@ function usePollPaymentStatus() {
   const MAX_RETRIES = 20;
   const POLLING_DELAY = 5000;
 
-  const [maxRetries, setMaxRetries] = React.useState(MAX_RETRIES);
-  const [paymentStatus, setPaymentStatus] = React.useState(
-    BOOKING_STATUS.PROCESSING
-  );
+  const [retryCount, setRetryCount] = useState(0);
+  const [paymentStatus, setPaymentStatus] = useState(BOOKING_STATUS.PROCESSING);
 
-  async function getPaymentStatus() {
+  const getPaymentStatus = async () => {
     try {
       const { data } = await axiosInstance.get(
         API_CONFIG.BOOKING.STATUS_BOOKING.URL(bookingId)
       );
 
+      const currentStatus = data.bookingStatus;
+
       if (
-        [
-          BOOKING_STATUS.CONFIRMED,
-          BOOKING_STATUS.CANCELLED,
-          BOOKING_STATUS.EXPIRED,
-        ].includes(data.bookingStatus)
+        currentStatus === BOOKING_STATUS.CONFIRMED ||
+        currentStatus === BOOKING_STATUS.CANCELLED ||
+        currentStatus === BOOKING_STATUS.EXPIRED
       ) {
-        setMaxRetries(0);
-        setPaymentStatus(data.bookingStatus);
-        return;
+        setPaymentStatus(currentStatus);
+        return; // stop polling on final statuses
       }
 
-      setMaxRetries((prev) => prev - 1);
+      // keep retrying if not final status
+      if (retryCount < MAX_RETRIES) {
+        setRetryCount((prev) => prev + 1);
+      } else {
+        setPaymentStatus(BOOKING_STATUS.MAX_RETRIES_EXCEEDED);
+      }
+
     } catch (err) {
-      console.log('error occurred: ', err);
+      console.error('Error while polling payment status:', err);
+      // You could decide to stop polling here too, or keep going
+      if (retryCount >= MAX_RETRIES) {
+        setPaymentStatus(BOOKING_STATUS.ERROR);
+      } else {
+        setRetryCount((prev) => prev + 1);
+      }
     }
-  }
+  };
 
   useEffect(() => {
-    if (maxRetries <= 0) {
-      setPaymentStatus(BOOKING_STATUS.ERROR);
-    }
+    const interval = setInterval(() => {
+      getPaymentStatus();
+    }, POLLING_DELAY);
 
-    const timeoutId = setTimeout(getPaymentStatus, POLLING_DELAY);
-    return () => clearTimeout(timeoutId);
-  }, [maxRetries]);
+    return () => clearInterval(interval);
+  }, [retryCount]);
 
   useEffect(() => {
-    getPaymentStatus();
+    getPaymentStatus(); // fire first time immediately
   }, []);
 
   return { paymentStatus };
