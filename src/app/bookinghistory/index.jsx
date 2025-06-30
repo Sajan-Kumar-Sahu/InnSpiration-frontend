@@ -22,7 +22,11 @@ const BookingHistory = () => {
         method: API_CONFIG.BOOKING.BOOKING_HISTORY.METHOD,
         url: API_CONFIG.BOOKING.BOOKING_HISTORY.URL,
       });
-      setBookings(response.data);
+
+      // 🔄 Sort by createdAt in descending order (most recent first)
+      const sortedBookings = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+      setBookings(sortedBookings);
     } catch (err) {
       console.error('Error fetching booking history:', err);
       setError(err.message || 'Something went wrong');
