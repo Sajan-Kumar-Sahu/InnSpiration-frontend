@@ -13,15 +13,15 @@ const HeroSection = () => {
     navigate('/destination');
   };
 
-  const images = [
-    '/assets/Hero image 20.jpg',
-    '/assets/Hero image 30.jpg',
-    '/assets/Hero image 10.jpg',
-    '/assets/Hero image 40.jpg',
-    '/assets/Hero image 50.jpg',
-    '/assets/Hero image 60.jpg',
-    '/assets/Hero image 70.jpg',
-    '/assets/Hero image 80.jpg'
+  const imageBaseNames = [
+    'Hero image 20',
+    'Hero image 30',
+    'Hero image 10',
+    'Hero image 40',
+    'Hero image 50',
+    'Hero image 60',
+    'Hero image 70',
+    'Hero image 80'
   ];
 
   return (
@@ -33,13 +33,20 @@ const HeroSection = () => {
         loop={true}
         className="absolute inset-0 z-[1] w-full h-full"
       >
-        {images.map((src, index) => (
+        {imageBaseNames.map((name, index) => (
           <SwiperSlide key={index}>
-            <img
-              src={src}
-              alt={`Hero Slide ${index + 1}`}
-              className="object-cover w-full h-full"
-            />
+            <picture>
+              <source
+                srcSet={`/assets/webp/${name}.webp`}
+                type="image/webp"
+              />
+              <img
+                src={`/assets/${name}.jpg`}
+                loading="lazy"
+                alt={`Hero Slide ${index + 1}`}
+                className="object-cover w-full h-full"
+              />
+            </picture>
           </SwiperSlide>
         ))}
       </Swiper>
