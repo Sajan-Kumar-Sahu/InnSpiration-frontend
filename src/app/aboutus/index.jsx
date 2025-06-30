@@ -53,7 +53,7 @@ const Aboutus = () => {
             {/* Image */}
             <div className="md:w-1/2">
             <img
-                src="/assets/Why choose us.jpg"
+                src="/assets/Why_choose_us.jpg"
                 alt="Why Choose Us"
                 className="rounded-lg shadow-lg w-full"
             />
@@ -135,7 +135,7 @@ const Aboutus = () => {
                 {/* Team Member 1 */}
                 <div className="bg-white p-6 rounded-lg shadow-md">
                     <img
-                    src="/assets/Sankarshan Photo.jpg"
+                    src="/assets/Sankarshan_Photo.jpg"
                     alt="Sankarshan Pradhan"
                     className="w-40 h-50 mx-auto rounded-b-lg object-cover object-center mb-4"                    />
                     <h5 className="text-xl font-bold">Sankarshan Pradhan</h5>
@@ -145,7 +145,7 @@ const Aboutus = () => {
                 {/* Team Member 2 */}
                 <div className="bg-white p-6 rounded-lg shadow-md">
                     <img
-                    src="/assets/sajan image.jpg"
+                    src="/assets/sajan_image.jpg"
                     alt="Sajan Kumar Sahu"
                     className="w-40 h-50 mx-auto rounded-lg object-cover mb-4"
                     />

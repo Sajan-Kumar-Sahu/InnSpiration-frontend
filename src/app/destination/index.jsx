@@ -8,61 +8,61 @@ const destinations = [
     id: 1,
     name: 'Goa',
     description: 'Sun-kissed beaches and vibrant nightlife await you in Goa.',
-    image: '/assets/Goa.jpg',
+    imageBase: 'Goa',
   },
   {
     id: 2,
     name: 'Manali',
     description: 'Snowy peaks and cozy stays make Manali a top pick for travelers.',
-    image: '/assets/Manali.jpg',
+    imageBase: 'Manali',
   },
   {
     id: 3,
     name: 'Jaipur',
     description: 'Explore royal palaces and colorful streets in the Pink City.',
-    image: '/assets/Jaipur.jpg',
+    imageBase: 'Jaipur',
   },
   {
     id: 4,
     name: 'Kerala',
     description: 'Backwaters, houseboats, and lush green landscapes in Kerala.',
-    image: '/assets/Kerala.jpg',
+    imageBase: 'Kerala',
   },
   {
     id: 5,
     name: 'Ladakh',
     description: 'High altitude adventures and breathtaking views await in Ladakh.',
-    image: '/assets/Ladakh.jpg',
+    imageBase: 'Ladakh',
   },
   {
     id: 6,
     name: 'Darjeeling',
     description: 'Tea gardens and cool breezes in the Queen of the Hills.',
-    image: '/assets/Darjeeling.jpg',
+    imageBase: 'Darjeeling',
   },
   {
     id: 7,
     name: 'Rishikesh',
     description: 'Yoga capital with adventure sports and spiritual vibes.',
-    image: '/assets/Rishikesh.jpg',
+    imageBase: 'Rishikesh',
   },
   {
     id: 8,
     name: 'Agra',
     description: 'Home of the Taj Mahal, a must-visit historical marvel.',
-    image: '/assets/taj-mahal.jpg',
+    imageBase: 'taj-mahal',
   },
   {
     id: 9,
     name: 'Andaman Islands',
     description: 'Clear blue waters, coral reefs, and serene beaches.',
-    image: '/assets/Andaman.jpg',
+    imageBase: 'Andaman',
   },
   {
     id: 10,
     name: 'Munnar',
     description: 'Lakes and palaces that define royal charm.',
-    image: '/assets/Munnar.jpg',
+    imageBase: 'Munnar',
   },
 ];
 
@@ -99,7 +99,7 @@ const DestinationPage = () => {
     <section className="bg-gradient-to-br from-blue-50 to-blue-100 py-20 px-4">
       <div className="max-w-7xl mx-auto text-center">
         <h1 className="text-5xl font-extrabold text-blue-900 mb-6 tracking-tight">
-        Let’s Go Somewhere Amazing
+          Let’s Go Somewhere Amazing
         </h1>
         <p className="text-gray-600 mb-12 max-w-2xl mx-auto text-lg">
           Discover breathtaking places crafted for unforgettable memories.
@@ -109,11 +109,18 @@ const DestinationPage = () => {
           {destinations.map((place) => (
             <div key={place.id} className="px-4">
               <div className="bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 transform hover:scale-105 border border-gray-200">
-                <img
-                  src={place.image}
-                  alt={place.name}
-                  className="w-full h-64 object-cover"
-                />
+                <picture>
+                  <source
+                    srcSet={`/assets/webp/${place.imageBase}.webp`}
+                    type="image/webp"
+                  />
+                  <img
+                    src={`/assets/${place.imageBase}.jpg`}
+                    loading="lazy"
+                    alt={place.name}
+                    className="w-full h-64 object-cover"
+                  />
+                </picture>
                 <div className="p-4 text-left">
                   <h2 className="text-xl font-semibold text-blue-700 mb-1">
                     {place.name}
