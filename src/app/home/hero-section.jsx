@@ -14,14 +14,14 @@ const HeroSection = () => {
   };
 
   const imageBaseNames = [
-    'Hero image 20',
-    'Hero image 30',
-    'Hero image 10',
-    'Hero image 40',
-    'Hero image 50',
-    'Hero image 60',
-    'Hero image 70',
-    'Hero image 80'
+    'Hero_image_20',
+    'Hero_image_30',
+    'Hero_image_10',
+    'Hero_image_40',
+    'Hero_image_50',
+    'Hero_image_60',
+    'Hero_image_70',
+    'Hero_image_80'
   ];
 
   return (
