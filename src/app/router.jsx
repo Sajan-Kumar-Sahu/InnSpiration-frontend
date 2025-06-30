@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Route, Routes, useLocation } from 'react-router';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router';
 import Home from './home';
 import Header from '@/components/layouts/header.layout';
 import Footer from '@/components/layouts/footer.layout';
@@ -57,9 +57,9 @@ const AppContent = () => {
 
 const Router = () => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <AppContent />
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 
