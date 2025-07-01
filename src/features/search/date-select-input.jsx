@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/popover';
 import dayjs from 'dayjs';
 import React from 'react';
-import useIsMobile from '@/hooks/useIsMobile';
+import useIsMobile from './hooks/useIsMobile';
 
 const isMobile = useIsMobile();
 
