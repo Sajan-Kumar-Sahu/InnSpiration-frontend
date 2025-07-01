@@ -12,16 +12,20 @@ const TrendingDestination = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-6 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {TRENDING_DESTINATIONS.map((destination, index) => (
           <div
             key={index}
             className={`h-[270px] rounded-lg overflow-hidden relative ${destination.className}`}
           >
-            <img className='object-cover size-full rounded-lg' src={getAssetPath(destination.image)} alt={destination.title} />
-            <div className='absolute from-70% to-100% inset-0 size-full bg-gradient-to-t from-transparent to-blue-800/60'>
-              <div className='p-3'>
-                <h3 className='text-xl font-bold text-white'>{destination.title}</h3>
+            <img
+              className="object-cover size-full rounded-lg"
+              src={getAssetPath(destination.image)}
+              alt={destination.title}
+            />
+            <div className="absolute from-70% to-100% inset-0 size-full bg-gradient-to-t from-transparent to-blue-800/60">
+              <div className="p-3">
+                <h3 className="text-xl font-bold text-white">{destination.title}</h3>
               </div>
             </div>
           </div>
