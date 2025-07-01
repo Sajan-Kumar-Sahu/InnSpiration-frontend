@@ -1,8 +1,14 @@
-import icons from '@/lib/icons.jsx'
+import icons from '@/lib/icons.jsx';
 
-const Icon = ({icon, ...props}) => {
+const Icon = ({ icon, size = 24, ...props }) => {
   const IconComponent = icons[icon];
-  return <IconComponent {...props}/>
-}
+
+  if (!IconComponent) {
+    console.warn(`⚠️ Icon "${icon}" not found.`);
+    return null;
+  }
+
+  return <IconComponent size={size} {...props} />;
+};
 
 export default Icon;
