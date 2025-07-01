@@ -15,7 +15,7 @@ const OccupancyInput = ({ form }) => {
     <Popover>
       <PopoverTrigger asChild>
         <div
-          className="h-12 w-full flex items-center px-4 py-2 rounded-md bg-background border border-gray-300 focus-within:ring-2 focus-within:ring-yellow-500 justify-between"
+          className="h-12 w-full flex items-center px-4 rounded-md bg-background border border-gray-300 focus-within:ring-2 focus-within:ring-yellow-500 justify-between"
           role="button"
         >
           <div className="flex items-center gap-2">
@@ -25,43 +25,42 @@ const OccupancyInput = ({ form }) => {
           <Icon icon="dropdown" size="18" className="text-muted-foreground shrink-0" />
         </div>
       </PopoverTrigger>
+
       <PopoverContent sideOffset={1} align="start" className="p-4 w-80">
         <FormField
           control={form.control}
           name="roomsCount"
           render={({ field }) => (
-            <div>
-              <FormItem className="flex items-center justify-between">
-                <FormLabel>Rooms</FormLabel>
-                <FormControl>
-                  <div className="border rounded-md border-foreground/50 flex items-center">
-                    <Button
-                      size="icon"
-                      variant="ghost"
-                      className="size-10 text-primary hover:text-primary"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        field.onChange(Math.max(1, field.value - 1));
-                      }}
-                    >
-                      <Icon icon="minus" />
-                    </Button>
-                    <span>{field.value}</span>
-                    <Button
-                      size="icon"
-                      variant="ghost"
-                      className="size-10 text-primary hover:text-primary"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        field.onChange(field.value + 1);
-                      }}
-                    >
-                      <Icon icon="plus" />
-                    </Button>
-                  </div>
-                </FormControl>
-              </FormItem>
-            </div>
+            <FormItem className="flex items-center justify-between">
+              <FormLabel>Rooms</FormLabel>
+              <FormControl>
+                <div className="border rounded border-foreground/50 flex items-center">
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    className="size-10 text-primary hover:text-primary"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      field.onChange(Math.max(1, field.value - 1));
+                    }}
+                  >
+                    <Icon icon="minus" />
+                  </Button>
+                  <span>{field.value}</span>
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    className="size-10 text-primary hover:text-primary"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      field.onChange(field.value + 1);
+                    }}
+                  >
+                    <Icon icon="plus" />
+                  </Button>
+                </div>
+              </FormControl>
+            </FormItem>
           )}
         />
       </PopoverContent>

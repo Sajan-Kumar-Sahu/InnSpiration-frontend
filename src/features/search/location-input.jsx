@@ -14,62 +14,48 @@ const LocationInput = ({ form }) => {
   const city = form.watch('city');
   const [isPopOverOpen, setIsPopOverOpen] = useState(false);
 
-  function citySelectHandler(e, index) {
+  const citySelectHandler = (e, index) => {
     e.preventDefault();
     const selectedDestination = DESTINATIONS[index];
     form.setValue('city', selectedDestination?.city || '');
     setIsPopOverOpen(false);
-  }
+  };
 
-  function handleKeyDown(e) {
-    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+  const handleKeyDown = (e) => {
+    if (['ArrowUp', 'ArrowDown'].includes(e.key)) {
       e.preventDefault();
     }
-  }
+  };
 
   return (
     <Popover open={isPopOverOpen} onOpenChange={setIsPopOverOpen}>
       <PopoverTrigger asChild>
-        <div className="h-12 w-full flex items-center gap-2 px-4 py-2 rounded-md bg-background border border-gray-300 focus-within:ring-2 focus-within:ring-yellow-500">
+        <div className="flex items-center w-full h-12 gap-2 px-4 rounded-md bg-background border border-gray-300 focus-within:ring-2 focus-within:ring-yellow-500">
           <Icon icon="bed" size="24" className="text-muted-foreground shrink-0" />
-          
           <FormField
             control={form.control}
             name="city"
             render={({ field }) => (
               <FormControl>
-                <div className="flex-1 h-full">
-                  <Input
-                    className="w-full h-full px-2 text-sm border-0 focus-visible:ring-0 focus:outline-none placeholder:text-foreground"
-                    placeholder="Where are you going?"
-                    {...field}
-                    autoComplete="off"
-                    onKeyDown={handleKeyDown}
-                  />
-                </div>
+                <Input
+                  className="flex-1 h-full px-2 text-sm border-0 focus:outline-none focus:ring-0 placeholder:text-foreground"
+                  placeholder="Where are you going?"
+                  {...field}
+                  autoComplete="off"
+                  onKeyDown={handleKeyDown}
+                />
               </FormControl>
             )}
           />
-          
-          <div
-            role="button"
-            className={city ? '' : 'opacity-0 pointer-events-none'}
-            onClick={(e) => {
-              e.preventDefault();
-              form.setValue('city', '');
-            }}
-            aria-label="Clear city input"
-          >
-            <Icon icon="close" size="18" className="text-muted-foreground shrink-0" />
-          </div>
+          {city && (
+            <div role="button" onClick={() => form.setValue('city', '')}>
+              <Icon icon="close" size="18" className="text-muted-foreground shrink-0" />
+            </div>
+          )}
         </div>
       </PopoverTrigger>
-      <PopoverContent
-        sideOffset={1}
-        align="start"
-        className="w-[420px]"
-        onOpenAutoFocus={(e) => e.preventDefault()}
-      >
+
+      <PopoverContent sideOffset={1} align="start" className="w-[420px]" onOpenAutoFocus={e => e.preventDefault()}>
         <div className="p-3">
           <p className="text-sm font-semibold">Popular destination nearby</p>
         </div>
