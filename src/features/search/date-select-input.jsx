@@ -8,6 +8,9 @@ import {
 } from '@/components/ui/popover';
 import dayjs from 'dayjs';
 import React from 'react';
+import useIsMobile from '@/hooks/useIsMobile';
+
+const isMobile = useIsMobile();
 
 const DateSelectInput = ({ form }) => {
   return (
@@ -35,7 +38,7 @@ const DateSelectInput = ({ form }) => {
             <PopoverContent
               sideOffset={1}
               align="start"
-              className="w-[640px]"
+              className="w-full max-w-[640px] overflow-visible"
               onOpenAutoFocus={e => e.preventDefault()}
             >
               <Calendar
@@ -43,10 +46,10 @@ const DateSelectInput = ({ form }) => {
                 mode="range"
                 min={2}
                 selected={field.value}
-                numberOfMonths={2}
+                numberOfMonths={isMobile ? 1 : 2}
                 fromMonth={new Date()}
                 disabled={(date) => dayjs().isAfter(dayjs(date), 'date')}
-                onSelect={value => field.onChange(value)}
+                onSelect={(value) => field.onChange(value)}
               />
             </PopoverContent>
           </>

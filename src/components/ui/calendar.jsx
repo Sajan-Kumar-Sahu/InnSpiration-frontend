@@ -18,7 +18,7 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }) {
         nav: 'space-x-1 flex items-center',
         nav_button: cn(
           buttonVariants({ variant: 'ghost' }),
-          'h-12 w-12 bg-transparent p-0'
+          'h-10 w-10 sm:h-12 sm:w-12 bg-transparent p-0'
         ),
         nav_button_previous: 'absolute left-1',
         nav_button_next: 'absolute right-1',
