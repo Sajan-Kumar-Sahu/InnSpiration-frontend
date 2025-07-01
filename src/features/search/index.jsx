@@ -14,11 +14,17 @@ const Search = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(searchSubmitHandler)}
-          className="flex flex-col sm:flex-row flex-wrap gap-1 sm:gap-2 p-2 sm:p-1 bg-yellow-500 items-center rounded h-auto sm:h-16"
+          className="flex flex-col sm:flex-row flex-wrap sm:flex-nowrap gap-2 bg-yellow-500 items-stretch sm:items-center rounded-md p-3 sm:p-1 h-auto sm:h-16"
         >
-          <LocationInput form={form} />
-          <DateSelectInput form={form} />
-          <OccupancyInput form={form} />
+          <div className="w-full sm:w-auto flex-1">
+            <LocationInput form={form} />
+          </div>
+          <div className="w-full sm:w-auto flex-1">
+            <DateSelectInput form={form} />
+          </div>
+          <div className="w-full sm:w-auto flex-1">
+            <OccupancyInput form={form} />
+          </div>
           <Button
             type="submit"
             className="w-full sm:w-auto text-lg h-12 sm:h-full"
