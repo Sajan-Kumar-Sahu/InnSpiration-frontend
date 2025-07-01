@@ -14,7 +14,7 @@ const Search = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(searchSubmitHandler)}
-          className="flex flex-col sm:flex-row flex-wrap sm:flex-nowrap gap-2 bg-yellow-500 items-stretch sm:items-center rounded-md p-3 sm:p-1 h-auto sm:h-16"
+          className="flex flex-col sm:flex-row flex-wrap sm:flex-nowrap gap-2 items-stretch sm:items-center bg-white border border-yellow-500 rounded-xl shadow-sm p-4 sm:p-2"
         >
           <div className="w-full sm:w-auto flex-1">
             <LocationInput form={form} />
@@ -27,7 +27,7 @@ const Search = () => {
           </div>
           <Button
             type="submit"
-            className="w-full sm:w-auto text-lg h-12 sm:h-full"
+            className="w-full sm:w-auto text-lg h-12 sm:h-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold"
           >
             Search
           </Button>
