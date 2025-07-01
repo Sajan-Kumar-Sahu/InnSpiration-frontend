@@ -38,7 +38,7 @@ const LocationInput = ({ form }) => {
             render={({ field }) => (
               <FormControl>
                 <Input
-                  className="flex-1 h-full px-2 text-sm border-0 focus:outline-none focus:ring-0 placeholder:text-foreground"
+                  className="flex-1 h-full px-2 text-sm border-0 outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:ring-0 placeholder:text-foreground"
                   placeholder="Where are you going?"
                   {...field}
                   autoComplete="off"
