@@ -7,7 +7,12 @@ import { Link } from 'react-router';
 import { PATHS } from '@/config/path.config';
 import { useAuthContext } from '@/lib/providers/auth-context-provider';
 import AccountMenu from '../account-menu';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetClose,
+} from "@/components/ui/sheet";
 import useLogoutHandler from '@/app/auth/hooks/use-logout';
 
 const Header = () => {
