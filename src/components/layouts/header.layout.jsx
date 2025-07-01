@@ -16,7 +16,7 @@ const Header = () => {
     <div onClick={() => setIsMenuOpen(false)}>
       <Link
         to={to}
-        className="text-white flex items-center gap-2 py-2 px-3 hover:bg-white/10 rounded"
+        className="text-white py-2 px-3 hover:bg-white/10 rounded block"
       >
         {children}
       </Link>
@@ -117,44 +117,23 @@ const Header = () => {
 
           {authenticatedUser.user && (
             <>
-              <MobileNavLink to="/profile">
-                <Icon icon="user" />
-                My Profile
-              </MobileNavLink>
-              <MobileNavLink to="/bookings">
-                <Icon icon="calendar-check" />
-                My Bookings
-              </MobileNavLink>
+              <MobileNavLink to="/profile">My Profile</MobileNavLink>
+              <MobileNavLink to="/bookings">My Bookings</MobileNavLink>
             </>
           )}
 
           {/* General nav links */}
-          <MobileNavLink to="/">
-            <Icon icon="home" />
-            Home
-          </MobileNavLink>
-          <MobileNavLink to="/destination">
-            <Icon icon="location" />
-            Destinations
-          </MobileNavLink>
-          <MobileNavLink to="/our-story">
-            <Icon icon="book-open" />
-            Our Story
-          </MobileNavLink>
-          <MobileNavLink to="/contact">
-            <Icon icon="phone" />
-            Contact Us
-          </MobileNavLink>
+          <MobileNavLink to="/">Home</MobileNavLink>
+          <MobileNavLink to="/destination">Destinations</MobileNavLink>
+          <MobileNavLink to="/our-story">Our Story</MobileNavLink>
+          <MobileNavLink to="/contact">Contact Us</MobileNavLink>
 
           <MobileNavLink to={PATHS.ADMIN_HOME}>
             <Button className="w-full">List Your Properties</Button>
           </MobileNavLink>
 
           {authenticatedUser.user ? (
-            <MobileNavLink to="/logout">
-              <Icon icon="logout" />
-              Logout
-            </MobileNavLink>
+            <MobileNavLink to="/logout">Logout</MobileNavLink>
           ) : (
             <>
               <MobileNavLink to={PATHS.SIGN_UP}>
