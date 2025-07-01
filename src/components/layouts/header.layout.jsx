@@ -93,43 +93,82 @@ const Header = () => {
           {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
 
-        {/* Mobile Menu with Animation */}
+        {/* Mobile Menu Content */}
         <div
-          className={`absolute top-full left-0 w-full bg-brand border-t border-white/20 p-4 flex flex-col gap-3 z-40 lg:hidden transition-all duration-300 ease-in-out transform ${
+          className={`absolute top-full left-0 w-full bg-brand border-t border-white/20 p-4 flex flex-col gap-2 z-40 lg:hidden transition-all duration-300 ease-in-out transform ${
             isMenuOpen
               ? 'opacity-100 scale-100 translate-y-0'
               : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
           }`}
         >
-          {SERVICE_LIST.map(item => (
-            <MobileNavLink key={item.id} to={item.link}>
-              <Icon icon={item.icon} />
-              {item.title}
-            </MobileNavLink>
-          ))}
+          {authenticatedUser.user && (
+            <div className="flex items-start gap-3 border-b border-white/20 pb-3 mb-2">
+              <img
+                src={authenticatedUser.user.avatar || '/assets/default-avatar.png'}
+                alt="User Avatar"
+                className="w-12 h-12 rounded-full object-cover"
+              />
+              <div className="text-white">
+                <p className="font-semibold text-base">{authenticatedUser.user.fullName}</p>
+                <p className="text-sm text-muted-foreground">{authenticatedUser.user.email}</p>
+              </div>
+            </div>
+          )}
 
-          <div className="mt-4 flex flex-col gap-2">
-            <MobileNavLink to={PATHS.ADMIN_HOME}>
-              <Button className="w-full">List Your Properties</Button>
-            </MobileNavLink>
+          {authenticatedUser.user && (
+            <>
+              <MobileNavLink to="/profile">
+                <Icon icon="user" />
+                My Profile
+              </MobileNavLink>
+              <MobileNavLink to="/bookings">
+                <Icon icon="calendar-check" />
+                My Bookings
+              </MobileNavLink>
+            </>
+          )}
 
-            {authenticatedUser.user ? (
-              <AccountMenu user={authenticatedUser.user} />
-            ) : (
-              <>
-                <MobileNavLink to={PATHS.SIGN_UP}>
-                  <Button className="w-full bg-white text-primary hover:bg-white/80">
-                    Register
-                  </Button>
-                </MobileNavLink>
-                <MobileNavLink to={PATHS.SIGN_IN}>
-                  <Button className="w-full bg-white text-primary hover:bg-white/80">
-                    Login
-                  </Button>
-                </MobileNavLink>
-              </>
-            )}
-          </div>
+          {/* General nav links */}
+          <MobileNavLink to="/">
+            <Icon icon="home" />
+            Home
+          </MobileNavLink>
+          <MobileNavLink to="/destination">
+            <Icon icon="location" />
+            Destinations
+          </MobileNavLink>
+          <MobileNavLink to="/our-story">
+            <Icon icon="book-open" />
+            Our Story
+          </MobileNavLink>
+          <MobileNavLink to="/contact">
+            <Icon icon="phone" />
+            Contact Us
+          </MobileNavLink>
+
+          <MobileNavLink to={PATHS.ADMIN_HOME}>
+            <Button className="w-full">List Your Properties</Button>
+          </MobileNavLink>
+
+          {authenticatedUser.user ? (
+            <MobileNavLink to="/logout">
+              <Icon icon="logout" />
+              Logout
+            </MobileNavLink>
+          ) : (
+            <>
+              <MobileNavLink to={PATHS.SIGN_UP}>
+                <Button className="w-full bg-white text-primary hover:bg-white/80">
+                  Register
+                </Button>
+              </MobileNavLink>
+              <MobileNavLink to={PATHS.SIGN_IN}>
+                <Button className="w-full bg-white text-primary hover:bg-white/80">
+                  Login
+                </Button>
+              </MobileNavLink>
+            </>
+          )}
         </div>
       </div>
     </header>
