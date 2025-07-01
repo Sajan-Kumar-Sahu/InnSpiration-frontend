@@ -8,7 +8,6 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { DESTINATIONS } from '@/config/app.config';
-
 import React, { useState } from 'react';
 
 const LocationInput = ({ form }) => {
@@ -23,32 +22,23 @@ const LocationInput = ({ form }) => {
   }
 
   function handleKeyDown(e) {
-    switch (e.key) {
-      case 'ArrowUp':
-        console.log('Up');
-        break;
-      case 'ArrowDown':
-        console.log('Down');
-        break;
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+      e.preventDefault();
     }
   }
 
   return (
     <Popover open={isPopOverOpen} onOpenChange={setIsPopOverOpen}>
       <PopoverTrigger asChild>
-        <div className="flex gap-2 items-center px-4 py-2 rounded bg-background lg:min-w-[360px] h-full">
-          <Icon
-            icon="bed"
-            size="24"
-            className="text-muted-foreground shrink-0"
-          />
+        <div className="flex gap-2 items-center px-4 py-2 rounded-md bg-background h-full border border-gray-300 focus-within:ring-2 focus-within:ring-yellow-500 lg:min-w-[360px] w-full">
+          <Icon icon="bed" size="24" className="text-muted-foreground shrink-0" />
           <FormField
             control={form.control}
             name="city"
             render={({ field }) => (
               <FormControl>
                 <Input
-                  className="w-full h-full px-2 text-sm border-0 focus-visible:ring-transparent focus-visible:ring-offset-transparent placeholder:font-normal placeholder:text-foreground focus:placeholder-muted-foreground"
+                  className="w-full h-full px-2 text-sm border-0 focus-visible:ring-0 placeholder:font-normal placeholder:text-foreground"
                   placeholder="Where are you going?"
                   {...field}
                   autoComplete="off"
@@ -66,16 +56,12 @@ const LocationInput = ({ form }) => {
             }}
             aria-label="Clear the city Input"
           >
-            <Icon
-              icon="close"
-              size="18"
-              className="text-muted-foreground shrink-0"
-            />
+            <Icon icon="close" size="18" className="text-muted-foreground shrink-0" />
           </div>
         </div>
       </PopoverTrigger>
       <PopoverContent
-        sideOffset="1"
+        sideOffset={1}
         align="start"
         className="w-[420px]"
         onOpenAutoFocus={(e) => e.preventDefault()}
@@ -93,9 +79,7 @@ const LocationInput = ({ form }) => {
               <Icon icon="location" />
               <div>
                 <p className="text-sm font-semibold">{destination.city}</p>
-                <p className="text-sm text-muted-foreground">
-                  {destination.country}
-                </p>
+                <p className="text-sm text-muted-foreground">{destination.country}</p>
               </div>
             </div>
           ))}
