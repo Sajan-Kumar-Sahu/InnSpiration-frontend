@@ -30,7 +30,7 @@ const LocationInput = ({ form }) => {
   return (
     <Popover open={isPopOverOpen} onOpenChange={setIsPopOverOpen}>
       <PopoverTrigger asChild>
-        <div className="flex items-center w-full h-12 gap-2 px-4 rounded-md bg-background border border-gray-300 focus-within:ring-2 focus-within:ring-yellow-500">
+        <div className="flex items-center w-full h-12 gap-2 px-4 rounded-md bg-background border border-gray-300 focus-within:ring-2 focus-within:ring-white">
           <Icon icon="bed" size="24" className="text-muted-foreground shrink-0" />
           <FormField
             control={form.control}
