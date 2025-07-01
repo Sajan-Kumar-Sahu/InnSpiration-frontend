@@ -12,6 +12,17 @@ const Header = () => {
   const { authenticatedUser } = useAuthContext();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const MobileNavLink = ({ to, children }) => (
+    <div onClick={() => setIsMenuOpen(false)}>
+      <Link
+        to={to}
+        className="text-white flex items-center gap-2 py-2 px-3 hover:bg-white/10 rounded"
+      >
+        {children}
+      </Link>
+    </div>
+  );
+
   return (
     <header className="bg-brand py-2 shadow-md">
       <div className="container flex justify-between items-center px-4 py-3 relative">
@@ -75,54 +86,51 @@ const Header = () => {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="lg:hidden text-white"
+          className="lg:hidden text-white z-50"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle Menu"
         >
           {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
 
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="absolute top-full left-0 w-full bg-brand border-t border-white/20 p-4 flex flex-col gap-3 z-50 lg:hidden">
-            {SERVICE_LIST.map(item => (
-              <Link
-                key={item.id}
-                to={item.link}
-                onClick={() => setIsMenuOpen(false)}
-                className="text-white flex items-center gap-2 py-2 px-3 hover:bg-white/10 rounded"
-              >
-                <Icon icon={item.icon} />
-                {item.title}
-              </Link>
-            ))}
+        {/* Mobile Menu with Animation */}
+        <div
+          className={`absolute top-full left-0 w-full bg-brand border-t border-white/20 p-4 flex flex-col gap-3 z-40 lg:hidden transition-all duration-300 ease-in-out transform ${
+            isMenuOpen
+              ? 'opacity-100 scale-100 translate-y-0'
+              : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
+          }`}
+        >
+          {SERVICE_LIST.map(item => (
+            <MobileNavLink key={item.id} to={item.link}>
+              <Icon icon={item.icon} />
+              {item.title}
+            </MobileNavLink>
+          ))}
 
-            <div className="mt-4 flex flex-col gap-2">
-              <Link to={PATHS.ADMIN_HOME}>
-                <Button className="w-full">List Your Properties</Button>
-              </Link>
+          <div className="mt-4 flex flex-col gap-2">
+            <MobileNavLink to={PATHS.ADMIN_HOME}>
+              <Button className="w-full">List Your Properties</Button>
+            </MobileNavLink>
 
-              {authenticatedUser.user ? (
-                <AccountMenu user={authenticatedUser.user} />
-              ) : (
-                <>
-                  <Button
-                    className="w-full bg-white text-primary hover:bg-white/80"
-                    asChild
-                  >
-                    <Link to={PATHS.SIGN_UP}>Register</Link>
+            {authenticatedUser.user ? (
+              <AccountMenu user={authenticatedUser.user} />
+            ) : (
+              <>
+                <MobileNavLink to={PATHS.SIGN_UP}>
+                  <Button className="w-full bg-white text-primary hover:bg-white/80">
+                    Register
                   </Button>
-                  <Button
-                    className="w-full bg-white text-primary hover:bg-white/80"
-                    asChild
-                  >
-                    <Link to={PATHS.SIGN_IN}>Login</Link>
+                </MobileNavLink>
+                <MobileNavLink to={PATHS.SIGN_IN}>
+                  <Button className="w-full bg-white text-primary hover:bg-white/80">
+                    Login
                   </Button>
-                </>
-              )}
-            </div>
+                </MobileNavLink>
+              </>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </header>
   );
