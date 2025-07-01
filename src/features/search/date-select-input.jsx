@@ -10,9 +10,9 @@ import dayjs from 'dayjs';
 import React from 'react';
 import useIsMobile from './hooks/useIsMobile';
 
-const isMobile = useIsMobile();
-
 const DateSelectInput = ({ form }) => {
+
+  const isMobile = useIsMobile();
   return (
     <Popover>
       <FormField
