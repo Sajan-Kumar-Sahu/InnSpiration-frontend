@@ -30,8 +30,9 @@ const LocationInput = ({ form }) => {
   return (
     <Popover open={isPopOverOpen} onOpenChange={setIsPopOverOpen}>
       <PopoverTrigger asChild>
-        <div className="flex gap-2 items-center px-4 py-2 h-12 w-full rounded-md bg-background border border-gray-300 focus-within:ring-2 focus-within:ring-yellow-500">
+        <div className="h-12 w-full flex items-center gap-2 px-4 py-2 rounded-md bg-background border border-gray-300 focus-within:ring-2 focus-within:ring-yellow-500">
           <Icon icon="bed" size="24" className="text-muted-foreground shrink-0" />
+          
           <FormField
             control={form.control}
             name="city"
@@ -39,7 +40,7 @@ const LocationInput = ({ form }) => {
               <FormControl>
                 <div className="flex-1 h-full">
                   <Input
-                    className="w-full h-full px-2 text-sm border-0 focus-visible:ring-0 placeholder:font-normal"
+                    className="w-full h-full px-2 text-sm border-0 focus-visible:ring-0 focus:outline-none placeholder:text-foreground"
                     placeholder="Where are you going?"
                     {...field}
                     autoComplete="off"
@@ -49,6 +50,7 @@ const LocationInput = ({ form }) => {
               </FormControl>
             )}
           />
+          
           <div
             role="button"
             className={city ? '' : 'opacity-0 pointer-events-none'}
@@ -56,7 +58,7 @@ const LocationInput = ({ form }) => {
               e.preventDefault();
               form.setValue('city', '');
             }}
-            aria-label="Clear the city Input"
+            aria-label="Clear city input"
           >
             <Icon icon="close" size="18" className="text-muted-foreground shrink-0" />
           </div>
