@@ -18,23 +18,23 @@ const DateSelectInput = ({ form }) => {
         render={({ field }) => (
           <>
             <PopoverTrigger asChild>
-              <FormItem className="px-4 py-2 rounded-md bg-background h-full border border-gray-300 focus-within:ring-2 focus-within:ring-yellow-500 lg:min-w-[300px] w-full">
+              <FormItem className="px-4 py-2 h-12 rounded-md bg-background border border-gray-300 lg:min-w-[300px] w-full">
                 <FormControl>
-                  <div role="button" className="flex items-center h-full w-full px-2 py-2">
+                  <div role="button" className="flex items-center w-full h-full">                    
                     <Icon icon="calendar" size="24" className="text-muted-foreground shrink-0" />
-                    <div className="flex items-center flex-1 gap-2 px-2 text-sm text-muted-foreground">
-                      <p>
-                        {field?.value?.from
-                          ? dayjs(field.value.from).format('ddd D MMM')
-                          : 'Check-in date'}
-                      </p>
-                      <span>-</span>
-                      <p>
-                        {field?.value?.to
-                          ? dayjs(field.value.to).format('ddd D MMM')
-                          : 'Check-out date'}
-                      </p>
-                    </div>
+                      <div className="flex items-center flex-1 gap-2 px-2 text-sm text-muted-foreground">
+                        <p>
+                          {field?.value?.from
+                            ? dayjs(field.value.from).format('ddd D MMM')
+                            : 'Check-in date'}
+                        </p>
+                        <span>-</span>
+                        <p>
+                          {field?.value?.to
+                            ? dayjs(field.value.to).format('ddd D MMM')
+                            : 'Check-out date'}
+                        </p>
+                      </div>
                   </div>
                 </FormControl>
               </FormItem>

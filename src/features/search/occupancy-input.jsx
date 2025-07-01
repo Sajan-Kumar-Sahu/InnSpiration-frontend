@@ -15,7 +15,7 @@ const OccupancyInput = ({ form }) => {
     <Popover>
       <PopoverTrigger asChild>
         <div
-          className="h-full w-full px-4 py-2 rounded-md bg-background border border-gray-300 focus-within:ring-2 focus-within:ring-yellow-500 flex items-center justify-between"
+          className="h-12 w-full px-4 py-2 rounded-md bg-background border border-gray-300 focus-within:ring-2 focus-within:ring-yellow-500 flex items-center justify-between"
           role="button"
         >
           <div className="flex items-center gap-2">

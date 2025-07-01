@@ -30,7 +30,7 @@ const LocationInput = ({ form }) => {
   return (
     <Popover open={isPopOverOpen} onOpenChange={setIsPopOverOpen}>
       <PopoverTrigger asChild>
-        <div className="flex gap-2 items-center px-4 py-2 rounded-md bg-background h-full border border-gray-300 focus-within:ring-2 focus-within:ring-yellow-500 lg:min-w-[360px] w-full">
+        <div className="flex gap-2 items-center px-4 py-2 h-12 w-full rounded-md bg-background border border-gray-300 focus-within:ring-2 focus-within:ring-yellow-500">
           <Icon icon="bed" size="24" className="text-muted-foreground shrink-0" />
           <FormField
             control={form.control}
@@ -39,7 +39,7 @@ const LocationInput = ({ form }) => {
               <FormControl>
                 <div className="flex-1 h-full">
                   <Input
-                    className="w-full h-full px-2 py-2 text-sm border-0 focus-visible:ring-0 focus:outline-none placeholder:text-foreground"
+                    className="w-full h-full px-2 text-sm border-0 focus-visible:ring-0 placeholder:font-normal"
                     placeholder="Where are you going?"
                     {...field}
                     autoComplete="off"
