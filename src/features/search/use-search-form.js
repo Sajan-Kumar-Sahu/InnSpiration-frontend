@@ -14,8 +14,12 @@ export default function useSearchForm() {
     city: searchParams.get(SEARCH_PARAMS_KEYS.LOCATION) || '',
     roomsCount: parseInt(searchParams.get(SEARCH_PARAMS_KEYS.ROOMS)) || 1,
     bookingDates: {
-      from: dayjs(searchParams.get(SEARCH_PARAMS_KEYS.CHECKIN)).toDate(),
-      to: dayjs(searchParams.get(SEARCH_PARAMS_KEYS.CHECKOUT)).toDate(),
+      from: searchParams.get(SEARCH_PARAMS_KEYS.CHECKIN)
+      ? dayjs(searchParams.get(SEARCH_PARAMS_KEYS.CHECKIN)).toDate()
+      : null,
+      to: searchParams.get(SEARCH_PARAMS_KEYS.CHECKOUT)
+        ? dayjs(searchParams.get(SEARCH_PARAMS_KEYS.CHECKOUT)).toDate()
+        : null,
     },
   };
 
