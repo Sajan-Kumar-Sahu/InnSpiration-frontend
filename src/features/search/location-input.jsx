@@ -37,13 +37,15 @@ const LocationInput = ({ form }) => {
             name="city"
             render={({ field }) => (
               <FormControl>
-                <Input
-                  className="w-full h-full px-2 text-sm border-0 focus-visible:ring-0 placeholder:font-normal placeholder:text-foreground"
-                  placeholder="Where are you going?"
-                  {...field}
-                  autoComplete="off"
-                  onKeyDown={handleKeyDown}
-                />
+                <div className="flex-1 h-full">
+                  <Input
+                    className="w-full h-full px-2 py-2 text-sm border-0 focus-visible:ring-0 focus:outline-none placeholder:text-foreground"
+                    placeholder="Where are you going?"
+                    {...field}
+                    autoComplete="off"
+                    onKeyDown={handleKeyDown}
+                  />
+                </div>
               </FormControl>
             )}
           />
