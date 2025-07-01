@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { SERVICE_LIST } from '@/config/app.config';
 import Icon from '../ui/icon';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { PATHS } from '@/config/path.config';
 import { useAuthContext } from '@/lib/providers/auth-context-provider';
 import AccountMenu from '../account-menu';
@@ -11,22 +11,28 @@ import { Menu, X } from 'lucide-react';
 const Header = () => {
   const { authenticatedUser } = useAuthContext();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const MobileNavLink = ({ to, children }) => (
-    <div onClick={() => setIsMenuOpen(false)}>
-      <Link
-        to={to}
-        className="text-white py-2 px-3 hover:bg-white/10 rounded block"
-      >
-        {children}
-      </Link>
+    <div
+      onClick={() => {
+        setIsMenuOpen(false);
+        navigate(to);
+      }}
+      className="text-white py-2 px-3 hover:bg-white/10 rounded block cursor-pointer"
+    >
+      {children}
     </div>
   );
+
+  const handleLogout = () => {
+    setIsMenuOpen(false);
+    navigate('/logout');
+  };
 
   return (
     <header className="bg-brand py-2 shadow-md">
       <div className="container flex justify-between items-center px-4 py-3 relative">
-        {/* Logo */}
         <Link to="/" aria-label="Go to InnSpiration">
           <img
             width={180}
@@ -37,7 +43,6 @@ const Header = () => {
           />
         </Link>
 
-        {/* Desktop Nav */}
         <div className="hidden lg:flex gap-4 items-center">
           {SERVICE_LIST.map(item => {
             const button = (
@@ -59,7 +64,6 @@ const Header = () => {
           })}
         </div>
 
-        {/* Auth Buttons - Desktop */}
         <div className="hidden lg:flex gap-2 items-center">
           <Link to={PATHS.ADMIN_HOME}>
             <Button>List Your Properties</Button>
@@ -68,23 +72,16 @@ const Header = () => {
             <AccountMenu user={authenticatedUser.user} />
           ) : (
             <>
-              <Button
-                className="bg-white border text-primary hover:bg-white/80"
-                asChild
-              >
+              <Button className="bg-white border text-primary hover:bg-white/80" asChild>
                 <Link to={PATHS.SIGN_UP}>Register</Link>
               </Button>
-              <Button
-                className="bg-white border text-primary hover:bg-white/80"
-                asChild
-              >
+              <Button className="bg-white border text-primary hover:bg-white/80" asChild>
                 <Link to={PATHS.SIGN_IN}>Login</Link>
               </Button>
             </>
           )}
         </div>
 
-        {/* Mobile Menu Toggle */}
         <button
           className="lg:hidden text-white z-50"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -93,7 +90,6 @@ const Header = () => {
           {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
 
-        {/* Mobile Menu Content */}
         <div
           className={`absolute top-full left-0 w-full bg-brand border-t border-white/20 p-4 flex flex-col gap-2 z-40 lg:hidden transition-all duration-300 ease-in-out transform ${
             isMenuOpen
@@ -109,7 +105,7 @@ const Header = () => {
                 className="w-12 h-12 rounded-full object-cover"
               />
               <div className="text-white">
-                <p className="font-semibold text-base">{authenticatedUser.user.fullName}</p>
+                <p className="font-semibold text-base">{authenticatedUser.user.fullName || 'Guest User'}</p>
                 <p className="text-sm text-muted-foreground">{authenticatedUser.user.email}</p>
               </div>
             </div>
@@ -122,7 +118,6 @@ const Header = () => {
             </>
           )}
 
-          {/* General nav links */}
           <MobileNavLink to="/">Home</MobileNavLink>
           <MobileNavLink to="/destination">Destinations</MobileNavLink>
           <MobileNavLink to="/our-story">Our Story</MobileNavLink>
@@ -133,7 +128,9 @@ const Header = () => {
           </MobileNavLink>
 
           {authenticatedUser.user ? (
-            <MobileNavLink to="/logout">Logout</MobileNavLink>
+            <div onClick={handleLogout} className="text-white py-2 px-3 hover:bg-white/10 rounded cursor-pointer">
+              Logout
+            </div>
           ) : (
             <>
               <MobileNavLink to={PATHS.SIGN_UP}>
