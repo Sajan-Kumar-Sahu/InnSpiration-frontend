@@ -7,7 +7,8 @@ const Footer = () => {
   return (
     <div className="bg-secondary">
       <footer className="container">
-        <div className="grid grid-cols-[repeat(auto-fill,_minmax(190px,1fr))] py-4 gap-6">
+        {/* Responsive Footer Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-[repeat(auto-fill,_minmax(190px,1fr))] py-4 gap-6">
           {FOOTER_SECTION.map((section, index) => (
             <div key={index} className="flex flex-col gap-3">
               <h3 className="text-sm font-bold">{section.title}</h3>
@@ -24,12 +25,13 @@ const Footer = () => {
           ))}
         </div>
       </footer>
+
+      {/* Bottom Bar */}
       <div className="bg-brand">
         <div className="flex items-center justify-center gap-4 p-4 mx-auto sm:flex-row max-w-7xl">
           <div>
             <p className="text-sm text-center text-white">
-               &copy;{' '}
-              {`${dayjs().year()} InnSpiration™`}
+              &copy; {`${dayjs().year()} InnSpiration™`}
             </p>
           </div>
         </div>
