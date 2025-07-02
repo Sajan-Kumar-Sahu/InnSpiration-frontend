@@ -19,7 +19,7 @@ const SearchPage = () => {
       <div className="flex flex-col lg:flex-row gap-6">
         
         {/* Filter Sidebar */}
-        <div className="w-full lg:w-1/3 xl:w-1/4">
+        <div className="hidden lg:block w-full lg:w-1/3 xl:w-1/4">
           <Filter />
         </div>
 
