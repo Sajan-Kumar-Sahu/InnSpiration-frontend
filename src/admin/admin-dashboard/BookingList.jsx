@@ -77,7 +77,7 @@ const BookingList = () => {
 
       {loading ? (
         <div className="flex justify-center py-8">
-          <LoadingSpinner />
+          Please Select a Hotel to list the Bookings.
         </div>
       ) : (
         <div className="overflow-x-auto">
