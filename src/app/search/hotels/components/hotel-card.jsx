@@ -100,8 +100,8 @@ const HotelCard = ({ name, photos, city, id, amenities, price }) => {
           </div>
         </div>
 
-        {/* Right side info */}
-        <div className="flex flex-row justify-between items-center p-4 border-t md:border-t-0 md:border-l w-full md:w-48">
+        {/* ✅ Responsive Right Side Panel */}
+        <div className="flex flex-col md:flex-col justify-between gap-2 p-4 border-t md:border-t-0 md:border-l w-full md:w-48 shrink-0">
           <div>
             <div className="flex gap-1.5 items-center">
               <p className="text-base font-bold text-brand">{hotelInfo.rating.text}</p>
@@ -110,10 +110,10 @@ const HotelCard = ({ name, photos, city, id, amenities, price }) => {
               </span>
             </div>
             <p className="text-sm text-muted-foreground">
-              &#40;{`${hotelInfo.rating.reviews} Ratings`}&#41;
+              ({`${hotelInfo.rating.reviews} Ratings`})
             </p>
           </div>
-          <div className="text-end">
+          <div className="text-end md:text-left">
             <p className="text-2xl font-bold">{`₹ ${price.toLocaleString()}`}</p>
             <p className="text-sm text-muted-foreground">{`+ ₹0 taxes & fees`}</p>
             <p className="text-sm text-muted-foreground">Per Night</p>
