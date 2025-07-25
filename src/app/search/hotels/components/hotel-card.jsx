@@ -100,24 +100,20 @@ const HotelCard = ({ name, photos, city, id, amenities, price }) => {
           </div>
         </div>
 
-        {/* ✅ Rating + Price Side-by-Side and Bottom Right Aligned on Desktop */}
-        <div className="flex flex-col justify-end p-4 border-t md:border-t-0 md:border-l w-full md:w-48 shrink-0">
-          <div className="flex flex-col md:flex-row md:justify-between md:items-end w-full gap-4">
-            {/* Rating */}
-            <div className="flex flex-col gap-1">
-              <div className="flex gap-1.5 items-center">
-                <p className="text-base font-bold text-brand">{hotelInfo.rating.text}</p>
-                <span className="inline-block px-1 py-0.5 text-sm font-bold text-white rounded bg-brand">
-                  {hotelInfo.rating.score}
-                </span>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                ({`${hotelInfo.rating.reviews} Ratings`})
-              </p>
+        {/* ✅ Updated Right Side Section (Rating + Price) */}
+        <div className="flex flex-col md:justify-between justify-center items-start md:items-stretch gap-2 p-4 border-t md:border-t-0 md:border-l w-full md:w-48 shrink-0">
+          <div className="w-full">
+            <div className="flex gap-1.5 items-center mb-1">
+              <p className="text-base font-bold text-brand">{hotelInfo.rating.text}</p>
+              <span className="inline-block px-1 py-0.5 text-sm font-bold text-white rounded bg-brand">
+                {hotelInfo.rating.score}
+              </span>
             </div>
+            <p className="text-sm text-muted-foreground mb-2">
+              ({`${hotelInfo.rating.reviews} Ratings`})
+            </p>
 
-            {/* Price */}
-            <div className="text-right">
+            <div className="text-left md:text-left">
               <p className="text-2xl font-bold">{`₹ ${price.toLocaleString()}`}</p>
               <p className="text-sm text-muted-foreground">{`+ ₹0 taxes & fees`}</p>
               <p className="text-sm text-muted-foreground">Per Night</p>
