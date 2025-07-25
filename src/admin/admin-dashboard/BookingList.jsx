@@ -77,7 +77,7 @@ const BookingList = () => {
 
       {loading ? (
         <div className="flex justify-center py-8">
-          Please Select a Hotel to list the Bookings.
+          Please choose a hotel to proceed with viewing its bookings.
         </div>
       ) : (
         <div className="overflow-x-auto">

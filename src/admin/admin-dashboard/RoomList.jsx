@@ -93,7 +93,7 @@ const RoomList = () => {
 
       {loading ? (
         <div className="flex justify-center items-center py-10">
-          <LoadingSpinner />
+          Please choose a hotel to proceed with viewing its rooms.
         </div>
       ) : (
         <div className="overflow-x-auto mt-6">
